@@ -32,5 +32,10 @@ export const routes: Routes = [
     loadComponent: () => import('./components/approve-transaction/approve-transaction.component').then(m => m.ApproveTransactionComponent),
     canActivate: [roleGuard(['Manager', 'Admin'])]
   },
+  { 
+    path: 'workflow', 
+    loadComponent: () => import('./components/workflow-details/workflow-details.component').then(m => m.WorkflowDetailsComponent),
+    canActivate: [authGuard]
+  },
   { path: '**', redirectTo: '/dashboard' }
 ];

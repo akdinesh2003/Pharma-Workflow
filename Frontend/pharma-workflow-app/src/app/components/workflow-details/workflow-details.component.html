@@ -1,0 +1,183 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Pharma Workflow</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Dashboard
+      </a>
+      <a routerLink="/transactions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        All Requests
+      </a>
+      <a routerLink="/transactions/create" routerLinkActive="active">
+        New Request
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn btn-secondary btn-block" (click)="logout()">Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <button class="btn-back" routerLink="/dashboard">← Back to Dashboard</button>
+      <h1>Workflow Process Details</h1>
+      <p>Complete pharmaceutical workflow management process</p>
+    </div>
+
+    <div class="workflow-container">
+      <!-- Main Workflow Path -->
+      <div class="card workflow-card">
+        <h2>Main Workflow Path</h2>
+        <div class="workflow-diagram">
+          <div class="workflow-step-detail">
+            <div class="step-circle-large initiated">1</div>
+            <h3>Initiated</h3>
+            <div class="step-info">
+              <p class="step-who">👤 Who: User, Manager, Admin</p>
+              <p class="step-what">📝 What: Create new drug batch request</p>
+              <p class="step-desc">A new pharmaceutical batch request is created with drug name, batch number, and initial comments.</p>
+            </div>
+          </div>
+
+          <div class="arrow-down">↓</div>
+
+          <div class="workflow-step-detail">
+            <div class="step-circle-large approved">2</div>
+            <h3>Approved</h3>
+            <div class="step-info">
+              <p class="step-who">👤 Who: Manager, Admin</p>
+              <p class="step-what">✅ What: Review and approve request</p>
+              <p class="step-desc">Quality assurance team reviews the request. If it meets standards, the request is approved for production.</p>
+            </div>
+          </div>
+
+          <div class="arrow-down">↓</div>
+
+          <div class="workflow-step-detail">
+            <div class="step-circle-large active">3</div>
+            <h3>Active</h3>
+            <div class="step-info">
+              <p class="step-who">👤 Who: Manager, Admin</p>
+              <p class="step-what">🚀 What: Activate for production</p>
+              <p class="step-desc">The approved batch is activated and production begins. The batch is now in active manufacturing.</p>
+            </div>
+          </div>
+
+          <div class="arrow-down">↓</div>
+
+          <div class="workflow-step-detail">
+            <div class="step-circle-large inactive">4</div>
+            <h3>Inactive</h3>
+            <div class="step-info">
+              <p class="step-who">👤 Who: Manager, Admin</p>
+              <p class="step-what">✔️ What: Complete and close</p>
+              <p class="step-desc">Production is completed. The batch is marked as inactive and the workflow is closed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alternative Path -->
+      <div class="card workflow-card alternative-card">
+        <h2>Alternative Path: Rejection</h2>
+        <div class="workflow-diagram">
+          <div class="workflow-step-detail">
+            <div class="step-circle-large initiated">1</div>
+            <h3>Initiated</h3>
+            <div class="step-info">
+              <p class="step-desc">Request is created and submitted for review.</p>
+            </div>
+          </div>
+
+          <div class="arrow-down">↓</div>
+
+          <div class="workflow-step-detail">
+            <div class="step-circle-large rejected">❌</div>
+            <h3>Rejected</h3>
+            <div class="step-info">
+              <p class="step-who">👤 Who: Manager, Admin</p>
+              <p class="step-what">❌ What: Reject request</p>
+              <p class="step-desc">If the request doesn't meet quality standards or has issues, it is rejected. The workflow ends here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modify Option -->
+      <div class="card workflow-card modify-card">
+        <h2>Modification Option</h2>
+        <div class="workflow-diagram">
+          <div class="workflow-step-detail">
+            <div class="step-circle-large modified">✏️</div>
+            <h3>Modified</h3>
+            <div class="step-info">
+              <p class="step-who">👤 Who: Manager, Admin</p>
+              <p class="step-what">✏️ What: Modify request details</p>
+              <p class="step-when">⏰ When: At Initiated or Approved stage</p>
+              <p class="step-desc">Request details (drug name, batch number, comments) can be modified before activation. After modification, the status changes to "Modified" and requires re-approval.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role Permissions -->
+      <div class="card permissions-card">
+        <h2>Role Permissions</h2>
+        <div class="permissions-grid">
+          <div class="permission-item">
+            <h3>👤 User</h3>
+            <ul>
+              <li>✅ Create new requests</li>
+              <li>✅ View all requests</li>
+              <li>✅ View history</li>
+              <li>❌ Cannot approve/reject</li>
+              <li>❌ Cannot modify</li>
+              <li>❌ Cannot activate/complete</li>
+              <li>❌ Cannot delete</li>
+            </ul>
+          </div>
+
+          <div class="permission-item">
+            <h3>👨‍💼 Manager</h3>
+            <ul>
+              <li>✅ All User permissions</li>
+              <li>✅ Approve requests</li>
+              <li>✅ Reject requests</li>
+              <li>✅ Modify requests</li>
+              <li>✅ Activate requests</li>
+              <li>✅ Complete requests</li>
+              <li>❌ Cannot delete</li>
+            </ul>
+          </div>
+
+          <div class="permission-item">
+            <h3>👨‍💻 Admin</h3>
+            <ul>
+              <li>✅ All Manager permissions</li>
+              <li>✅ Delete requests (soft delete)</li>
+              <li>✅ Full system access</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit Trail -->
+      <div class="card audit-card">
+        <h2>📋 Audit Trail</h2>
+        <p>Every action in the workflow is recorded with:</p>
+        <ul class="audit-list">
+          <li>🕐 Timestamp - When the action occurred</li>
+          <li>👤 User - Who performed the action</li>
+          <li>📝 Action - What was done (Created, Approved, Rejected, etc.)</li>
+          <li>💬 Comments - Additional notes or reasons</li>
+          <li>🔄 Status Change - Previous status → New status</li>
+        </ul>
+        <p class="audit-note">This ensures complete traceability for regulatory compliance.</p>
+      </div>
+    </div>
+  </main>
+</div>

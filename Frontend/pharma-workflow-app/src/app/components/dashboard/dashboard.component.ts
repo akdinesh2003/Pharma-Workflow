@@ -71,6 +71,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/transactions', id, 'history']);
   }
 
+  navigateToWorkflow(): void {
+    this.router.navigate(['/workflow']);
+  }
+
   logout(): void {
     this.authService.logout();
   }

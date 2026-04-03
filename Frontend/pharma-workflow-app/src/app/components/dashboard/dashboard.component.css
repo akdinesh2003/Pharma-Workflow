@@ -338,6 +338,13 @@
 .workflow-section {
   margin-bottom: 32px;
   padding: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.workflow-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .workflow-section h2 {
@@ -345,6 +352,16 @@
   color: #1e293b;
   font-size: 22px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.view-details {
+  font-size: 14px;
+  color: #3b82f6;
+  font-weight: 500;
 }
 
 .workflow-steps {
