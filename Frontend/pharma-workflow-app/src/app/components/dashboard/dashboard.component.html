@@ -17,25 +17,37 @@
     </nav>
 
     <div class="sidebar-footer">
-      <div class="user-info" *ngIf="currentUser$ | async as user">
-        <p><strong>{{ user.fullName }}</strong></p>
-        <p class="user-role">{{ user.role }}</p>
-      </div>
       <button class="btn btn-secondary btn-block" (click)="logout()">Logout</button>
     </div>
   </aside>
 
   <main class="main-content">
-    <div class="page-header">
-      <h1>Dashboard</h1>
-      <p>Overview of pharmaceutical workflow requests</p>
+    <!-- Top Header with Profile -->
+    <div class="top-header">
+      <div class="page-title">
+        <h1>Dashboard</h1>
+        <p>Overview of pharmaceutical workflow requests</p>
+      </div>
+      <div class="profile-section" *ngIf="currentUser$ | async as user">
+        <div class="profile-info">
+          <div class="profile-details">
+            <p class="profile-name">{{ user.fullName }}</p>
+            <p class="profile-role">{{ user.role }}</p>
+          </div>
+          <div class="profile-avatar">
+            {{ user.fullName.charAt(0).toUpperCase() }}
+          </div>
+        </div>
+      </div>
     </div>
 
     <div *ngIf="isLoading" class="loading">Loading dashboard...</div>
 
     <div *ngIf="!isLoading && stats">
+      <!-- Stats Cards -->
       <div class="stats-grid">
         <div class="stat-card stat-total">
+          <div class="stat-icon">📊</div>
           <div class="stat-content">
             <h3>{{ stats.totalRequests }}</h3>
             <p>Total Requests</p>
@@ -43,6 +55,7 @@
         </div>
 
         <div class="stat-card stat-approved">
+          <div class="stat-icon">✅</div>
           <div class="stat-content">
             <h3>{{ stats.approved }}</h3>
             <p>Approved</p>
@@ -50,6 +63,7 @@
         </div>
 
         <div class="stat-card stat-pending">
+          <div class="stat-icon">⏳</div>
           <div class="stat-content">
             <h3>{{ stats.pending }}</h3>
             <p>Pending</p>
@@ -57,6 +71,7 @@
         </div>
 
         <div class="stat-card stat-rejected">
+          <div class="stat-icon">❌</div>
           <div class="stat-content">
             <h3>{{ stats.rejected }}</h3>
             <p>Rejected</p>
@@ -64,6 +79,7 @@
         </div>
       </div>
 
+      <!-- Workflow Section -->
       <div class="workflow-section card">
         <h2>Workflow Process</h2>
         <div class="workflow-steps">
@@ -92,21 +108,27 @@
         </div>
       </div>
 
+      <!-- Recent Requests -->
       <div class="recent-section card">
-        <h2>Recent Requests</h2>
+        <div class="section-header">
+          <h2>Recent Requests</h2>
+          <button class="btn btn-primary btn-sm" routerLink="/transactions">View All</button>
+        </div>
         <table class="table" *ngIf="recentTransactions.length > 0">
           <thead>
             <tr>
               <th>Drug Name</th>
               <th>Batch No</th>
+              <th>Requested By</th>
               <th>Status</th>
               <th>Created Date</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let transaction of recentTransactions">
-              <td>{{ transaction.drugName }}</td>
+              <td><strong>{{ transaction.drugName }}</strong></td>
               <td>{{ transaction.batchNo }}</td>
+              <td>{{ transaction.requestedBy }}</td>
               <td>
                 <span class="status-badge status-{{ transaction.status.toLowerCase() }}">
                   {{ transaction.status }}

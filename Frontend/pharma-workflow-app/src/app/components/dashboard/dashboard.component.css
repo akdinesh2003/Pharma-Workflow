@@ -64,8 +64,82 @@
 
 .main-content {
   flex: 1;
-  padding: 32px;
   background: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Header with Profile */
+.top-header {
+  background: white;
+  padding: 20px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.page-title h1 {
+  font-size: 28px;
+  margin: 0 0 4px 0;
+  color: #1e293b;
+}
+
+.page-title p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-details {
+  text-align: right;
+}
+
+.profile-name {
+  margin: 0;
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 14px;
+}
+
+.profile-role {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.profile-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* Content Area */
+.main-content > div:not(.top-header) {
+  padding: 32px;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .page-header {
@@ -85,50 +159,66 @@
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  gap: 24px;
   margin-bottom: 32px;
 }
 
 .stat-card {
   background: white;
-  padding: 24px;
-  border-radius: 12px;
+  padding: 28px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #f1f5f9;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
 .stat-icon {
-  font-size: 36px;
+  font-size: 42px;
+  line-height: 1;
 }
 
 .stat-content h3 {
-  font-size: 32px;
+  font-size: 36px;
   margin: 0 0 4px 0;
+  font-weight: 700;
+  color: #1e293b;
 }
 
 .stat-content p {
   margin: 0;
   color: #64748b;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .workflow-section {
   margin-bottom: 32px;
+  padding: 32px;
 }
 
 .workflow-section h2 {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   color: #1e293b;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .workflow-steps {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: 20px;
+  gap: 20px;
+  padding: 24px;
+  background: #f8fafc;
+  border-radius: 12px;
 }
 
 .workflow-step {
@@ -136,40 +226,48 @@
 }
 
 .step-circle {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   color: white;
-  margin: 0 auto 8px;
+  margin: 0 auto 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.workflow-step p {
+  margin: 0;
+  font-weight: 600;
+  color: #475569;
+  font-size: 14px;
 }
 
 .step-circle.initiated {
-  background: var(--initiated-color);
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
 }
 
 .step-circle.approved {
-  background: var(--approved-color);
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
 }
 
 .step-circle.active {
-  background: var(--active-color);
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
 }
 
 .step-circle.inactive {
-  background: var(--inactive-color);
+  background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
 }
 
 .workflow-alternative {
-  margin-top: 20px;
+  margin-top: 24px;
   text-align: center;
-  padding: 12px;
+  padding: 16px;
   background: #fef2f2;
-  border-radius: 8px;
+  border-radius: 10px;
   border-left: 4px solid var(--rejected-color);
 }
 
@@ -177,15 +275,34 @@
   margin: 0;
   color: #991b1b;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .workflow-arrow {
-  font-size: 24px;
+  font-size: 28px;
   color: #cbd5e1;
+  font-weight: bold;
+}
+
+.recent-section {
+  padding: 32px;
+}
+
+.recent-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
 .recent-section h2 {
-  margin-bottom: 20px;
+  margin: 0;
   color: #1e293b;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 13px;
 }
