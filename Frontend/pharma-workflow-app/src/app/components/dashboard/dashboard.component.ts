@@ -59,6 +59,14 @@ export class DashboardComponent implements OnInit {
     this.showProfileDropdown = false;
   }
 
+  navigateToTransactions(status?: string): void {
+    if (status) {
+      this.router.navigate(['/transactions'], { queryParams: { status: status } });
+    } else {
+      this.router.navigate(['/transactions']);
+    }
+  }
+
   logout(): void {
     this.authService.logout();
   }

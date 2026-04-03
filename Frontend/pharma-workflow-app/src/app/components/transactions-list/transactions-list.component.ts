@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { TransactionService } from '../../services/transaction.service';
 import { AuthService } from '../../services/auth.service';
 import { Transaction } from '../../models/transaction.model';
@@ -24,11 +24,18 @@ export class TransactionsListComponent implements OnInit {
   constructor(
     private transactionService: TransactionService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.loadTransactions();
+    // Check for query parameters
+    this.route.queryParams.subscribe(params => {
+      if (params['status']) {
+        this.statusFilter = params['status'];
+      }
+      this.loadTransactions();
+    });
   }
 
   loadTransactions(): void {

@@ -304,11 +304,16 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid #f1f5f9;
+  cursor: pointer;
 }
 
 .stat-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card:active {
+  transform: translateY(-2px);
 }
 
 .stat-icon {
