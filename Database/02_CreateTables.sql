@@ -29,7 +29,6 @@ CREATE TABLE Main_Transactions (
     UpdatedDate DATETIME DEFAULT GETDATE(),
     IsDeleted BIT DEFAULT 0,
     RowVersion ROWVERSION,
-    FilePath NVARCHAR(500),
     Comments NVARCHAR(MAX),
     CONSTRAINT UQ_BatchNo UNIQUE (BatchNo)
 );

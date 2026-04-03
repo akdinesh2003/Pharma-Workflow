@@ -344,7 +344,6 @@ public class TransactionService : ITransactionService
             Status = transaction.Status,
             CreatedDate = transaction.CreatedDate,
             UpdatedDate = transaction.UpdatedDate,
-            FilePath = transaction.FilePath,
             Comments = transaction.Comments,
             RowVersion = transaction.RowVersion
         };

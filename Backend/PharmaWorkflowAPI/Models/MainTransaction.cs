@@ -28,7 +28,6 @@ public class MainTransaction
     [Timestamp]
     public byte[]? RowVersion { get; set; }
     
-    public string? FilePath { get; set; }
     public string? Comments { get; set; }
     
     public ICollection<HistoryTransaction> History { get; set; } = new List<HistoryTransaction>();

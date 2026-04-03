@@ -6,7 +6,6 @@ export interface Transaction {
   status: TransactionStatus;
   createdDate: string;
   updatedDate: string;
-  filePath?: string;
   comments?: string;
   rowVersion?: number[];
 }

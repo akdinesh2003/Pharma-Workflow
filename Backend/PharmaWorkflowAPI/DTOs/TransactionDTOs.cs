@@ -56,7 +56,6 @@ public class TransactionResponse
     public string Status { get; set; } = string.Empty;
     public DateTime CreatedDate { get; set; }
     public DateTime UpdatedDate { get; set; }
-    public string? FilePath { get; set; }
     public string? Comments { get; set; }
     public byte[]? RowVersion { get; set; }
 }
