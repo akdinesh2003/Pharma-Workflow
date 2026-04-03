@@ -76,14 +76,15 @@
       </div>
 
       <div class="form-section">
+        <h2>Review Comments</h2>
         <div class="form-group">
-          <label for="comments">Review Comments</label>
+          <label for="comments">Add your review comments *</label>
           <textarea 
             id="comments" 
             class="form-control" 
             [(ngModel)]="comments"
-            placeholder="Add your review comments..."
-            rows="4"></textarea>
+            placeholder="Enter your comments for approval or rejection..."
+            rows="5"></textarea>
         </div>
 
         <div *ngIf="errorMessage" class="alert alert-error">
