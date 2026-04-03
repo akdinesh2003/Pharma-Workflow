@@ -286,6 +286,8 @@ public class TransactionService : ITransactionService
             Pending = transactions.Count(t => t.Status == "Initiated"),
             Rejected = transactions.Count(t => t.Status == "Rejected"),
             Active = transactions.Count(t => t.Status == "Active"),
+            Inactive = transactions.Count(t => t.Status == "Inactive"),
+            Modified = transactions.Count(t => t.Status == "Modified"),
             Initiated = transactions.Count(t => t.Status == "Initiated")
         };
     }

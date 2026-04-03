@@ -55,5 +55,7 @@ export interface DashboardStats {
   pending: number;
   rejected: number;
   active: number;
+  inactive: number;
+  modified: number;
   initiated: number;
 }

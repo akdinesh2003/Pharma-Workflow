@@ -89,6 +89,14 @@
           </div>
         </div>
 
+        <div class="stat-card stat-initiated" (click)="navigateToTransactions('Initiated')">
+          <div class="stat-icon">📝</div>
+          <div class="stat-content">
+            <h3>{{ stats.initiated }}</h3>
+            <p>Initiated</p>
+          </div>
+        </div>
+
         <div class="stat-card stat-approved" (click)="navigateToTransactions('Approved')">
           <div class="stat-icon">✅</div>
           <div class="stat-content">
@@ -97,11 +105,27 @@
           </div>
         </div>
 
-        <div class="stat-card stat-pending" (click)="navigateToTransactions('Initiated')">
-          <div class="stat-icon">⏳</div>
+        <div class="stat-card stat-active" (click)="navigateToTransactions('Active')">
+          <div class="stat-icon">🚀</div>
           <div class="stat-content">
-            <h3>{{ stats.pending }}</h3>
-            <p>Pending</p>
+            <h3>{{ stats.active }}</h3>
+            <p>Active</p>
+          </div>
+        </div>
+
+        <div class="stat-card stat-inactive" (click)="navigateToTransactions('Inactive')">
+          <div class="stat-icon">✔️</div>
+          <div class="stat-content">
+            <h3>{{ stats.inactive }}</h3>
+            <p>Inactive</p>
+          </div>
+        </div>
+
+        <div class="stat-card stat-modified" (click)="navigateToTransactions('Modified')">
+          <div class="stat-icon">✏️</div>
+          <div class="stat-content">
+            <h3>{{ stats.modified }}</h3>
+            <p>Modified</p>
           </div>
         </div>
 

@@ -67,5 +67,7 @@ public class DashboardStats
     public int Pending { get; set; }
     public int Rejected { get; set; }
     public int Active { get; set; }
+    public int Inactive { get; set; }
+    public int Modified { get; set; }
     public int Initiated { get; set; }
 }
