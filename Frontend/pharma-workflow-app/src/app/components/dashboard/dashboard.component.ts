@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   recentTransactions: Transaction[] = [];
   currentUser$ = this.authService.currentUser$;
   isLoading = true;
+  showProfileDropdown = false;
 
   constructor(
     private authService: AuthService,
@@ -48,6 +49,14 @@ export class DashboardComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  toggleProfileDropdown(): void {
+    this.showProfileDropdown = !this.showProfileDropdown;
+  }
+
+  closeProfileDropdown(): void {
+    this.showProfileDropdown = false;
   }
 
   logout(): void {
