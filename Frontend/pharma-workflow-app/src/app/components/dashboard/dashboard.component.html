@@ -160,7 +160,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let transaction of recentTransactions">
+            <tr *ngFor="let transaction of recentTransactions" 
+                class="clickable-row" 
+                (click)="viewTransactionHistory(transaction.id)">
               <td><strong>{{ transaction.drugName }}</strong></td>
               <td>{{ transaction.batchNo }}</td>
               <td>{{ transaction.requestedBy }}</td>

@@ -67,6 +67,10 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  viewTransactionHistory(id: number): void {
+    this.router.navigate(['/transactions', id, 'history']);
+  }
+
   logout(): void {
     this.authService.logout();
   }
