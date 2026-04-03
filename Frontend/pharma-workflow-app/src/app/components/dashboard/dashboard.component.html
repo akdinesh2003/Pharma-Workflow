@@ -80,60 +80,64 @@
 
     <div *ngIf="!isLoading && stats">
       <!-- Stats Cards -->
-      <div class="stats-grid">
-        <div class="stat-card stat-total" (click)="navigateToTransactions()">
-          <div class="stat-icon">📊</div>
-          <div class="stat-content">
-            <h3>{{ stats.totalRequests || 0 }}</h3>
-            <p>Total Requests</p>
+      <div class="stats-container">
+        <div class="stats-row">
+          <div class="stat-card stat-total" (click)="navigateToTransactions()">
+            <div class="stat-icon">📊</div>
+            <div class="stat-content">
+              <h3>{{ stats.totalRequests || 0 }}</h3>
+              <p>Total Requests</p>
+            </div>
+          </div>
+
+          <div class="stat-card stat-initiated" (click)="navigateToTransactions('Initiated')">
+            <div class="stat-icon">📝</div>
+            <div class="stat-content">
+              <h3>{{ stats.initiated || 0 }}</h3>
+              <p>Initiated</p>
+            </div>
+          </div>
+
+          <div class="stat-card stat-approved" (click)="navigateToTransactions('Approved')">
+            <div class="stat-icon">✅</div>
+            <div class="stat-content">
+              <h3>{{ stats.approved || 0 }}</h3>
+              <p>Approved</p>
+            </div>
+          </div>
+
+          <div class="stat-card stat-active" (click)="navigateToTransactions('Active')">
+            <div class="stat-icon">🚀</div>
+            <div class="stat-content">
+              <h3>{{ stats.active || 0 }}</h3>
+              <p>Active</p>
+            </div>
           </div>
         </div>
 
-        <div class="stat-card stat-initiated" (click)="navigateToTransactions('Initiated')">
-          <div class="stat-icon">📝</div>
-          <div class="stat-content">
-            <h3>{{ stats.initiated || 0 }}</h3>
-            <p>Initiated</p>
+        <div class="stats-row">
+          <div class="stat-card stat-inactive" (click)="navigateToTransactions('Inactive')">
+            <div class="stat-icon">✔️</div>
+            <div class="stat-content">
+              <h3>{{ stats.inactive || 0 }}</h3>
+              <p>Inactive</p>
+            </div>
           </div>
-        </div>
 
-        <div class="stat-card stat-approved" (click)="navigateToTransactions('Approved')">
-          <div class="stat-icon">✅</div>
-          <div class="stat-content">
-            <h3>{{ stats.approved || 0 }}</h3>
-            <p>Approved</p>
+          <div class="stat-card stat-modified" (click)="navigateToTransactions('Modified')">
+            <div class="stat-icon">✏️</div>
+            <div class="stat-content">
+              <h3>{{ stats.modified || 0 }}</h3>
+              <p>Modified</p>
+            </div>
           </div>
-        </div>
 
-        <div class="stat-card stat-active" (click)="navigateToTransactions('Active')">
-          <div class="stat-icon">🚀</div>
-          <div class="stat-content">
-            <h3>{{ stats.active || 0 }}</h3>
-            <p>Active</p>
-          </div>
-        </div>
-
-        <div class="stat-card stat-inactive" (click)="navigateToTransactions('Inactive')">
-          <div class="stat-icon">✔️</div>
-          <div class="stat-content">
-            <h3>{{ stats.inactive || 0 }}</h3>
-            <p>Inactive</p>
-          </div>
-        </div>
-
-        <div class="stat-card stat-modified" (click)="navigateToTransactions('Modified')">
-          <div class="stat-icon">✏️</div>
-          <div class="stat-content">
-            <h3>{{ stats.modified || 0 }}</h3>
-            <p>Modified</p>
-          </div>
-        </div>
-
-        <div class="stat-card stat-rejected" (click)="navigateToTransactions('Rejected')">
-          <div class="stat-icon">❌</div>
-          <div class="stat-content">
-            <h3>{{ stats.rejected || 0 }}</h3>
-            <p>Rejected</p>
+          <div class="stat-card stat-rejected" (click)="navigateToTransactions('Rejected')">
+            <div class="stat-icon">❌</div>
+            <div class="stat-content">
+              <h3>{{ stats.rejected || 0 }}</h3>
+              <p>Rejected</p>
+            </div>
           </div>
         </div>
       </div>
