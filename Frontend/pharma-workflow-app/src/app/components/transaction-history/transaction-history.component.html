@@ -1,0 +1,97 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Pharma Workflow</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Dashboard
+      </a>
+      <a routerLink="/transactions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        All Requests
+      </a>
+      <a routerLink="/transactions/create" routerLinkActive="active">
+        New Request
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info" *ngIf="currentUser$ | async as user">
+        <p><strong>{{ user.fullName }}</strong></p>
+        <p class="user-role">{{ user.role }}</p>
+      </div>
+      <button class="btn btn-secondary btn-block" (click)="logout()">Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>Transaction History</h1>
+      <p>Audit trail for pharmaceutical workflow request</p>
+    </div>
+
+    <div *ngIf="isLoading" class="loading">Loading history...</div>
+
+    <div *ngIf="!isLoading && transaction" class="card transaction-info">
+      <h2>Transaction Details</h2>
+      <div class="info-grid">
+        <div>
+          <strong>Drug Name:</strong> {{ transaction.drugName }}
+        </div>
+        <div>
+          <strong>Batch No:</strong> {{ transaction.batchNo }}
+        </div>
+        <div>
+          <strong>Status:</strong> 
+          <span class="status-badge status-{{ transaction.status.toLowerCase() }}">
+            {{ transaction.status }}
+          </span>
+        </div>
+        <div>
+          <strong>Requested By:</strong> {{ transaction.requestedBy }}
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading" class="card">
+      <h2>Audit Trail</h2>
+      
+      <div *ngIf="history.length === 0" class="empty-state">
+        <p>No history records found</p>
+      </div>
+
+      <div class="timeline" *ngIf="history.length > 0">
+        <div class="timeline-item" *ngFor="let item of history">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <h3>{{ item.action }}</h3>
+              <span class="timeline-date">{{ item.actionDate | date:'medium' }}</span>
+            </div>
+            <div class="timeline-body">
+              <p><strong>Action By:</strong> {{ item.actionBy }}</p>
+              <p *ngIf="item.previousStatus && item.newStatus">
+                <strong>Status Change:</strong> 
+                <span class="status-badge status-{{ item.previousStatus.toLowerCase() }}">
+                  {{ item.previousStatus }}
+                </span>
+                →
+                <span class="status-badge status-{{ item.newStatus.toLowerCase() }}">
+                  {{ item.newStatus }}
+                </span>
+              </p>
+              <p *ngIf="item.comments"><strong>Comments:</strong> {{ item.comments }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="back-button">
+        <button class="btn btn-secondary" routerLink="/transactions">
+          ← Back to Requests
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

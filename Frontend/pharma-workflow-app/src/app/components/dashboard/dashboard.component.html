@@ -1,0 +1,125 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Pharma Workflow</h2>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Dashboard
+      </a>
+      <a routerLink="/transactions" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        All Requests
+      </a>
+      <a routerLink="/transactions/create" routerLinkActive="active">
+        New Request
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info" *ngIf="currentUser$ | async as user">
+        <p><strong>{{ user.fullName }}</strong></p>
+        <p class="user-role">{{ user.role }}</p>
+      </div>
+      <button class="btn btn-secondary btn-block" (click)="logout()">Logout</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+      <p>Overview of pharmaceutical workflow requests</p>
+    </div>
+
+    <div *ngIf="isLoading" class="loading">Loading dashboard...</div>
+
+    <div *ngIf="!isLoading && stats">
+      <div class="stats-grid">
+        <div class="stat-card stat-total">
+          <div class="stat-content">
+            <h3>{{ stats.totalRequests }}</h3>
+            <p>Total Requests</p>
+          </div>
+        </div>
+
+        <div class="stat-card stat-approved">
+          <div class="stat-content">
+            <h3>{{ stats.approved }}</h3>
+            <p>Approved</p>
+          </div>
+        </div>
+
+        <div class="stat-card stat-pending">
+          <div class="stat-content">
+            <h3>{{ stats.pending }}</h3>
+            <p>Pending</p>
+          </div>
+        </div>
+
+        <div class="stat-card stat-rejected">
+          <div class="stat-content">
+            <h3>{{ stats.rejected }}</h3>
+            <p>Rejected</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="workflow-section card">
+        <h2>Workflow Process</h2>
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="step-circle initiated">1</div>
+            <p>Initiated</p>
+          </div>
+          <div class="workflow-arrow">→</div>
+          <div class="workflow-step">
+            <div class="step-circle approved">2</div>
+            <p>Approved</p>
+          </div>
+          <div class="workflow-arrow">→</div>
+          <div class="workflow-step">
+            <div class="step-circle active">3</div>
+            <p>Active</p>
+          </div>
+          <div class="workflow-arrow">→</div>
+          <div class="workflow-step">
+            <div class="step-circle inactive">4</div>
+            <p>Inactive</p>
+          </div>
+        </div>
+        <div class="workflow-alternative">
+          <p class="alternative-text">Alternative: Initiated → Rejected</p>
+        </div>
+      </div>
+
+      <div class="recent-section card">
+        <h2>Recent Requests</h2>
+        <table class="table" *ngIf="recentTransactions.length > 0">
+          <thead>
+            <tr>
+              <th>Drug Name</th>
+              <th>Batch No</th>
+              <th>Status</th>
+              <th>Created Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of recentTransactions">
+              <td>{{ transaction.drugName }}</td>
+              <td>{{ transaction.batchNo }}</td>
+              <td>
+                <span class="status-badge status-{{ transaction.status.toLowerCase() }}">
+                  {{ transaction.status }}
+                </span>
+              </td>
+              <td>{{ transaction.createdDate | date:'short' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="recentTransactions.length === 0" class="empty-state">
+          <p>No transactions yet</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
