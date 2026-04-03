@@ -37,12 +37,17 @@ public class TransactionService : ITransactionService
             _context.Main_Transactions.Add(transaction);
             await _context.SaveChangesAsync();
 
+            // Use user's comments if provided, otherwise use default
+            var historyComments = string.IsNullOrWhiteSpace(request.Comments) 
+                ? "Request initiated" 
+                : request.Comments;
+
             var history = new HistoryTransaction
             {
                 TransactionId = transaction.Id,
                 Action = "Created",
                 ActionBy = username,
-                Comments = "Request initiated",
+                Comments = historyComments,
                 NewStatus = "Initiated",
                 ActionDate = DateTime.Now
             };
